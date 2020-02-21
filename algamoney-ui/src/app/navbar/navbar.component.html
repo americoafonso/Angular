@@ -3,8 +3,16 @@
   <div class="container">
     <div class="ui-g">
       <div class="ui-g-12">
-        <a href="javavascript:;" class="navbar-toogle"> <i class="pi pi-bars"></i> </a>
+        <a href="javavascript:;" class="navbar-toogle" (click)="exibindoMenu = !exibindoMenu"> <i class="pi pi-bars"></i> </a>
       </div>
     </div>
   </div>
+
+  <ul class="navbar-menu" [hidden]="exibindoMenu">
+    <li class="navbar-usuario">@mérico @fonso</li>
+    <li class="navbar-menuitem"><a href="javascript:;">Lancamentos</a></li>
+    <li class="navbar-menuitem"><a href="javascript:;">Pessoas</a></li>
+    <li class="navbar-menuitem"><a href="javascript:;">Logout</a></li>
+  </ul>
+
 </nav>
