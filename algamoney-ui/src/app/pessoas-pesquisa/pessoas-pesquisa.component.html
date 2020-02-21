@@ -38,11 +38,11 @@
             <td>{{pessoa.cidade}}</td>
             <td class="col-data-content">{{pessoa.estado}}</td>
             <td class="col-data-content">{{pessoa.ativo ? 'Ativo' : 'Inativo'}}</td>
-            <!-- <td class="col-valor-content" [ngStyle]="{ color: lancamento.tipo === 'DESPESA' ? 'red' : 'blue'}">{{lancamento.valor}}</td> -->
             <td class="col-acoes">
               <a pButton class="espaco-icones" icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top"></a>
-              <button pButton class="espaco-icones" icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top"></button>
-           </td>
+              <button pButton class="espaco-icones" icon="pi pi-trash" pTooltip="Excluir"
+                tooltipPosition="top"></button>
+            </td>
           </tr>
         </ng-template>
       </p-table>
