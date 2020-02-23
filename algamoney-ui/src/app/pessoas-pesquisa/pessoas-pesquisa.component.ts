@@ -13,7 +13,9 @@ export class PessoasPesquisaComponent implements OnInit {
     { nome: 'Carla Souza', cidade: 'Florianópolis', estado: 'SC', ativo: true },
     { nome: 'Luís Pereira', cidade: 'Curitiba', estado: 'PR', ativo: true },
     { nome: 'Vilmar Andrade', cidade: 'Rio de Janeiro', estado: 'RJ', ativo: false },
-    { nome: 'Paula Maria', cidade: 'Uberlândia', estado: 'MG', ativo: true }
+    { nome: 'Paula Maria', cidade: 'Uberlândia', estado: 'MG', ativo: true },
+    { nome: 'Americo Afonso', cidade: 'Belo Horizonte', estado: 'MG', ativo: false },
+    { nome: 'Ethan Afonso', cidade: 'Belo Horizonte', estado: 'MG', ativo: true }
   ];
 
   constructor() { }
