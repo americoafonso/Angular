@@ -19,7 +19,7 @@ export class LancamentoCadastroComponent implements OnInit {
     {label: 'Transporte', value: '2'},
   ];
 
-  pessoa = [
+  pessoas = [
     {label: 'Americo Afonso', value: '1'},
     {label: 'Ethan Afonso', value: '2'},
     {label: 'Delzer Afonso', value: '3'},

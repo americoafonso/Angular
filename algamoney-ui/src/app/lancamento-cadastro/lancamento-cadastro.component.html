@@ -14,18 +14,21 @@
 
       <div class="ui-g-6 ui-md-3 ui-fluid">
         <label>Vencimento</label>
-        <p-calendar dateFormat="dd/mm/yy" [showIcon]="true" [locale]="pt"></p-calendar>
+        <p-calendar dateFormat="dd/mm/yy" [showIcon]="true" [locale]="pt" name="vencimento" ngModel #vencimento="ngModel" required placeholder="10/01/2020" ></p-calendar>
+
+        <app-message [control]="vencimento" error="required"
+           text="Informe uma data de vencimento"></app-message>
       </div>
 
       <div class="ui-g-6 ui-md-3 ui-fluid">
         <label>{{ tipo.value === 'RECEITA' ? 'Recebimento' : 'Pagamento' }}</label>
-        <p-calendar dateFormat="dd/mm/yy" [showIcon]="true" [locale]="pt"></p-calendar>
+        <p-calendar dateFormat="dd/mm/yy" [showIcon]="true" [locale]="pt" placeholder="20/02/2020"></p-calendar>
       </div>
 
       <div class="ui-g-12 ui-md-9 ui-fluid">
         <label>Descrição</label>
         <input pInputText type="text" name="descricao"
-          ngModel #descricao="ngModel" required minlength="5">
+          ngModel #descricao="ngModel" required minlength="5" placeholder="Descrição para este Lançamento.">
 
           <app-message [control]="descricao" error="required"
            text="Informe uma descrição"></app-message>
@@ -43,17 +46,23 @@
 
       <div class="ui-g-12 ui-md-6 ui-fluid">
         <label>Categoria</label>
-        <p-dropdown [options]="categorias" placeholder="Selecione"></p-dropdown>
+        <p-dropdown [options]="categorias" placeholder="Selecione" name="categoria" ngModel #categoria="ngModel" required ></p-dropdown>
+
+        <app-message [control]="categoria" error="required"
+           text="Informe uma das categorias"></app-message>
       </div>
 
       <div class="ui-g-12 ui-md-6 ui-fluid">
         <label>Pessoa</label>
-        <p-dropdown [options]="pessoa" placeholder="Selecione" [filter]="true"></p-dropdown>
+        <p-dropdown [options]="pessoas" placeholder="Selecione" [filter]="true" name="pessoa" ngModel #pessoa="ngModel" required></p-dropdown>
+
+        <app-message [control]="pessoa" error="required"
+           text="Informe uma das pessoas"></app-message>
       </div>
 
       <div class="ui-g-12 ui-fluid">
         <label>Observação</label>
-        <textarea pInputTextarea row="3"></textarea>
+        <textarea pInputTextarea row="3" placeholder="Observação para este Lançamento."></textarea>
       </div>
 
       <div class="ui-g-12" id="">
