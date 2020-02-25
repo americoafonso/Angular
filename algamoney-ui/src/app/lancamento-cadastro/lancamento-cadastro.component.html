@@ -5,19 +5,21 @@
     <div class="ui-g">
 
       <div class="ui-g-12">
+        <h1>Novo Lançamento</h1>
+      </div>
 
-        <h1>Novo Lançamento...</h1>
-
+      <div class="ui-g-12">
+        <p-selectButton [options]="tipos" #tipo></p-selectButton>
       </div>
 
       <div class="ui-g-6 ui-md-3 ui-fluid">
         <label>Vencimento</label>
-        <input type="text" pInputText />
+        <p-calendar dateFormat="dd/mm/yy" [showIcon]="true" [locale]="pt"></p-calendar>
       </div>
 
       <div class="ui-g-6 ui-md-3 ui-fluid">
-        <label>Recebimeto</label>
-        <input type="text" pInputText />
+        <label>{{ tipo.value === 'RECEITA' ? 'Recebimento' : 'Pagamento' }}</label>
+        <p-calendar dateFormat="dd/mm/yy" [showIcon]="true" [locale]="pt"></p-calendar>
       </div>
 
       <div class="ui-g-12 ui-md-9 ui-fluid">
@@ -27,17 +29,18 @@
 
       <div class="ui-g-12 ui-md-3 ui-fluid">
         <label>Valor</label>
-        <input type="text" pInputText placeholder="00,00" />
+        <input type="text" name="valor" pInputText placeholder="0,00" currencyMask
+          [options]="{ prefix: '', thousands: '.', decimal: ',', allowNegative: false }" ngModel />
       </div>
 
       <div class="ui-g-12 ui-md-6 ui-fluid">
         <label>Categoria</label>
-        <input type="text" pInputText />
+        <p-dropdown [options]="categorias" placeholder="Selecione"></p-dropdown>
       </div>
 
       <div class="ui-g-12 ui-md-6 ui-fluid">
         <label>Pessoa</label>
-        <input type="text" pInputText />
+        <p-dropdown [options]="pessoa" placeholder="Selecione" [filter]="true"></p-dropdown>
       </div>
 
       <div class="ui-g-12 ui-fluid">
