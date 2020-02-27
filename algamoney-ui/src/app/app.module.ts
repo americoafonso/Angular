@@ -24,6 +24,7 @@ import { PessoaCadastroComponent } from './pessoa-cadastro/pessoa-cadastro.compo
 import { FormsModule } from '@angular/forms';
 import { MessageComponent } from './message/message.component';
 import { LancamentosGridComponent } from './lancamentos-grid/lancamentos-grid.component';
+import { PessoasGridComponent } from './pessoas-grid/pessoas-grid.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { LancamentosGridComponent } from './lancamentos-grid/lancamentos-grid.co
     LancamentoCadastroComponent,
     PessoaCadastroComponent,
     MessageComponent,
-    LancamentosGridComponent
+    LancamentosGridComponent,
+    PessoasGridComponent
   ],
   imports: [
     BrowserModule,
