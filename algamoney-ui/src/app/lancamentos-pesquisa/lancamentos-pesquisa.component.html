@@ -1,14 +1,21 @@
 <div class="container">
+  <br>
+  <br>
 
   <div class="ui-g">
 
     <div class="ui-g-12">
-      <h1>Lançamentos</h1>
+      <!-- <h1>Lançamentos</h1> -->
+      <i class="pi pi-bookmark">Lançamentos</i>
     </div>
+    <br>
+    <br>
+    <br>
+    <br>
 
     <div class="ui-g-12 ui-fluid">
       <label>Descrição</label>
-      <input type="text" pInputText />
+      <input type="text" pInputText placeholder="Buscar descrição"/>
     </div>
 
     <div class="ui-g-12">
@@ -20,7 +27,7 @@
     </div>
 
     <div class="ui-g-12">
-      <button pButton type="submit" label="Pesquisar"></button>
+      <button pButton type="submit" label="Pesquisar" icon="pi pi-search"></button>
     </div>
 
   </div>
@@ -31,7 +38,7 @@
         <ng-template pTemplate="header">
           <tr>
             <th>Pessoa</th>
-            <th>Descricao</th>
+            <th>Descrição</th>
             <th class="col-data-header">Vencimento</th>
             <th class="col-data-header">Pagamento</th>
             <th class="col-valor-header">Valor</th>
@@ -58,7 +65,7 @@
     </div>
 
     <div class="ui-g-12">
-      <button pButton label="Novo Lancamento"></button>
+      <button pButton label="Novo Lançamento" icon="pi pi-plus"></button>
     </div>
 
   </div>

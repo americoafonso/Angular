@@ -12,6 +12,7 @@ import {SelectButtonModule} from 'primeng/selectbutton';
 import {DropdownModule} from 'primeng/dropdown';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 import {InputMaskModule} from 'primeng/inputmask';
+import {KeyFilterModule} from 'primeng/keyfilter';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -48,7 +49,8 @@ import { MessageComponent } from './message/message.component';
     SelectButtonModule,
     DropdownModule,
     CurrencyMaskModule,
-    InputMaskModule
+    InputMaskModule,
+    KeyFilterModule
   ],
   providers: [],
   bootstrap: [AppComponent]
