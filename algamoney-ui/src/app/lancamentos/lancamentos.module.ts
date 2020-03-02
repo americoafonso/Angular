@@ -1,3 +1,4 @@
+import { SharedModule } from './../shared/shared.module';
 import { FormsModule } from '@angular/forms';
 import { KeyFilterModule } from 'primeng/keyfilter';
 import { InputMaskModule } from 'primeng/inputmask';
@@ -40,6 +41,8 @@ import { LancamentosGridComponent } from './lancamentos-grid/lancamentos-grid.co
     CurrencyMaskModule,
     InputMaskModule,
     KeyFilterModule,
+
+    SharedModule
   ],
   exports: [
     LancamentosPesquisaComponent,

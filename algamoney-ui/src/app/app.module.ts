@@ -17,17 +17,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { LancamentosModule } from './lancamentos/lancamentos.module';
 import { PessoasModule } from './pessoas/pessoas.module';
+import { CoreModule } from './core/core.module';
 
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { MessageComponent } from './message/message.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent,
-    NavbarComponent,
-    MessageComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +44,8 @@ import { MessageComponent } from './message/message.component';
     KeyFilterModule,
 
     LancamentosModule,
-    PessoasModule
+    PessoasModule,
+    CoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]
