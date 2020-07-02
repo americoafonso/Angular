@@ -17,14 +17,12 @@ import { CommonModule } from '@angular/common';
 
 import { LancamentosPesquisaComponent } from './lancamentos-pesquisa/lancamentos-pesquisa.component';
 import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-cadastro.component';
-import { LancamentosGridComponent } from './lancamentos-grid/lancamentos-grid.component';
 
 
 @NgModule({
   declarations: [
     LancamentosPesquisaComponent,
-    LancamentoCadastroComponent,
-    LancamentosGridComponent
+    LancamentoCadastroComponent
   ],
   imports: [
     CommonModule,
