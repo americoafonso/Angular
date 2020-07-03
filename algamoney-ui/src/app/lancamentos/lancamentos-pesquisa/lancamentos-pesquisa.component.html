@@ -16,16 +16,18 @@
 
       <div class="ui-g-12 ui-fluid">
         <label>Descrição</label>
-        <input pInputText type="text" name="descricao" [(ngModel)]="descricao" placeholder="Buscar descrição">
+        <input pInputText type="text" name="descricao" [(ngModel)]="filtro.descricao" placeholder="Buscar descrição">
       </div>
 
       <div class="ui-g-12">
         <label style="display: block">Vencimento</label>
-        <p-calendar dateFormat="dd/mm/yy" [showIcon]="true" [locale]="pt" name="vencimentoInicio" [(ngModel)]="dataVencimentoInicio"></p-calendar>
+        <p-calendar dateFormat="dd/mm/yy" [showIcon]="true" [locale]="pt" name="vencimentoInicio"
+          [(ngModel)]="filtro.dataVencimentoInicio"></p-calendar>
 
 
         <label>até</label>
-        <p-calendar dateFormat="dd/mm/yy" [showIcon]="true" [locale]="pt" name="vencimentoFim" [(ngModel)]="dataVencimentoFim"></p-calendar>
+        <p-calendar dateFormat="dd/mm/yy" [showIcon]="true" [locale]="pt" name="vencimentoFim"
+          [(ngModel)]="filtro.dataVencimentoFim"></p-calendar>
       </div>
 
       <div class="ui-g-12">
@@ -39,7 +41,8 @@
   <div class="ui-g">
     <div class="ui-g-12">
 
-      <p-table [value]="lancamentos" [paginator]="true" [rows]="4" responsive="true">
+      <p-table [value]="lancamentos" [paginator]="true" [rows]="filtro.itensPorPagina" [lazy]="true"
+        [totalRecords]="totalRegistros" (onLazyLoad)="aoMudarPagina($event)" responsive="true">
         <ng-template pTemplate="header">
           <tr>
             <th>Pessoa</th>
@@ -47,7 +50,7 @@
             <th class="col-data-header">Vencimento</th>
             <th class="col-data-header">Pagamento</th>
             <th class="col-valor-header">Valor</th>
-            <th class="col-valor-header"></th>
+            <th class="col-valor-header">Ações</th>
 
           </tr>
         </ng-template>
