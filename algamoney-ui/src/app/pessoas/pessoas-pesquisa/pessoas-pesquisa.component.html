@@ -4,22 +4,26 @@
 
   <div class="ui-g">
 
-    <div class="ui-g-12">
-      <i class="pi pi-bookmark">Pessoas</i>
-    </div>
-    <br>
-    <br>
-    <br>
-    <br>
+    <form autocomplete="off" (ngSubmit)="pesquisar()">
 
-    <div class="ui-g-12 ui-fluid">
-      <label>Nome</label>
-      <input type="text" pInputText placeholder="Buscar pelo nome" />
-    </div>
+      <div class="ui-g-12">
+        <i class="pi pi-bookmark">Pessoas</i>
+      </div>
+      <br>
+      <br>
+      <br>
+      <br>
 
-    <div class="ui-g-12">
-      <button pButton type="submit" label="Pesquisar" icon="pi pi-search"></button>
-    </div>
+      <div class="ui-g-12 ui-fluid">
+        <label>Nome</label>
+        <input type="text" pInputText name="nome" [(ngModel)]="filtro.nome" placeholder="Buscar pelo nome" />
+      </div>
+
+      <div class="ui-g-12">
+        <button pButton type="submit" label="Pesquisar" icon="pi pi-search"></button>
+      </div>
+
+    </form>
 
   </div>
 
@@ -27,7 +31,35 @@
 
     <div class="ui-g-12">
 
-      <app-pessoas-grid [pessoas]="pessoas"></app-pessoas-grid>
+      <!-- <pre>{{pessoas | json}}</pre> -->
+
+      <p-table [value]="pessoas" [paginator]="true" [rows]="filtro.itensPorPagina" [lazy]="true"
+        [totalRecords]="totalRegistros" (onLazyLoad)="aoMudarPagina($event)" responsive="true">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Nome</th>
+            <th>Cidade</th>
+            <th class="col-data-header">Estado</th>
+            <th class="col-data-header">Status</th>
+            <th class="col-valor-header">Ações</th>
+
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-pessoas>
+          <tr>
+            <td>{{pessoas.nome}}</td>
+            <td>{{pessoas.endereco.cidade}}</td>
+            <td class="col-data-content">{{pessoas.endereco.estado}}</td>
+            <td class="col-data-content">{{pessoas.ativo ? 'Ativo' : 'Inativo'}}</td>
+            <td class="col-acoes">
+              <a pButton class="espaco-icones" icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top"></a>
+              <button pButton class="espaco-icones" icon="pi pi-trash" pTooltip="Excluir"
+                tooltipPosition="top"></button>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+
 
     </div>
 

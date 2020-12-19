@@ -17,7 +17,7 @@ import { PessoasGridComponent } from './pessoas-grid/pessoas-grid.component';
   declarations: [
     PessoasPesquisaComponent,
     PessoaCadastroComponent,
-    PessoasGridComponent
+    PessoasGridComponent,
   ],
   imports: [
     CommonModule,
