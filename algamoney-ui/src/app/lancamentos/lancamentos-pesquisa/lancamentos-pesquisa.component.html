@@ -61,7 +61,7 @@
             <td class="col-data-content">{{lancamento.dataVencimento | date:'dd/MM/yyyy'}}</td>
             <td class="col-data-content">{{lancamento.dataPagamento| date:'dd/MM/yyyy'}}</td>
             <td class="col-valor-content" [ngStyle]="{ color: lancamento.tipo === 'DESPESA' ? 'red' : 'blue'}">
-              {{lancamento.valor}}</td>
+              {{lancamento.valor | currency: ' R$ '}}</td>
             <td class="col-acoes">
               <a pButton class="espaco-icones" icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top"></a>
               <button pButton class="espaco-icones" icon="pi pi-trash" pTooltip="Excluir"
