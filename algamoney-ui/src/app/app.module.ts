@@ -24,6 +24,7 @@ import { PessoasModule } from './pessoas/pessoas.module';
 import { CoreModule } from './core/core.module';
 
 import { AppComponent } from './app.component';
+import { ToastyModule } from 'ng2-toasty';
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import { AppComponent } from './app.component';
 
     LancamentosModule,
     PessoasModule,
-    CoreModule
+    CoreModule,
+    ToastyModule.forRoot(),
   ],
   providers: [LancamentoService, PessoaService],
   bootstrap: [AppComponent]
