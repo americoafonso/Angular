@@ -1,10 +1,7 @@
-import { PessoaService } from './pessoas/pessoa.service';
-import { LancamentoService } from './lancamentos/lancamento.service';
-
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
-import { LOCALE_ID, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
@@ -24,24 +21,7 @@ import { PessoasModule } from './pessoas/pessoas.module';
 import { CoreModule } from './core/core.module';
 
 import { AppComponent } from './app.component';
-import { ToastyModule } from 'ng2-toasty';
-import {ConfirmDialogModule} from 'primeng/confirmdialog';
-import { ConfirmationService } from 'primeng/api';
-import { registerLocaleData } from '@angular/common';
-import { CurrencyMaskConfig, CURRENCY_MASK_CONFIG } from 'ng2-currency-mask/src/currency-mask.config';
-import localePt from '@angular/common/locales/pt';
 
-registerLocaleData(localePt, 'pt');
-
-export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
-  align: 'right',
-  allowNegative: false,
-  decimal: ',',
-  precision: 2,
-  prefix: '',
-  suffix: '',
-  thousands: '.'
-};
 
 
 @NgModule({
@@ -68,15 +48,11 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
 
     LancamentosModule,
     PessoasModule,
-    CoreModule,
-    ToastyModule.forRoot(),
-    ConfirmDialogModule,
+    CoreModule
+
   ],
   providers: [
-    LancamentoService,
-    PessoaService,
-    ConfirmationService,
-    { provide: CURRENCY_MASK_CONFIG, useValue: CustomCurrencyMaskConfig }, { provide: LOCALE_ID, useValue: 'pt'}
+
   ],
   bootstrap: [AppComponent]
 })
