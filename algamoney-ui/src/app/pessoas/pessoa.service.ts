@@ -17,24 +17,30 @@ export class PessoaService {
   constructor(private http: HttpClient) { }
 
   pesquisar(filtro: PessoaFiltro): Promise<any> {
-    const headers = new HttpHeaders().append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
-    let params = new HttpParams();
+    const headers = new HttpHeaders()
+      .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
+    let params = new HttpParams()
+      .set('page', filtro.pagina.toString())
+      .set('size', filtro.itensPorPagina.toString());
 
     if (filtro.nome) {
       params = params.set('nome', filtro.nome);
     }
 
-    return this.http.get(`${this.pessoasUrl}?nome`, { headers, params })
-    .toPromise()
-    .then(response => {
-      const pessoas = response['content'];
-      const resultado = {
-        pessoas,
-        total: response['totalElements']
-      };
-      return resultado;
-    });
+    return this.http.get(`${this.pessoasUrl}`, { headers, params })
+      .toPromise()
+      .then(response => {
+        const pessoas = response['content'];
+
+        const resultado = {
+          pessoas,
+          total: response['totalElements']
+        };
+
+        return resultado;
+      });
   }
+
 
   listar(filtro: PessoaFiltro): Promise<any> {
     const headers = new HttpHeaders().append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
@@ -42,8 +48,6 @@ export class PessoaService {
 
     params = params.set('page', filtro.pagina.toString());
     params = params.set('size', filtro.itensPorPagina.toString());
-
-
 
     return this.http.get(`${this.pessoasUrl}/list?page=` + filtro.pagina + '&size=' + filtro.itensPorPagina, { headers })
       .toPromise()
@@ -56,4 +60,24 @@ export class PessoaService {
         return resultado;
       });
   }
+
+
+  listarTodas(): Promise<any> {
+    const headers = new HttpHeaders()
+      .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
+
+    return this.http.get(this.pessoasUrl, { headers })
+      .toPromise()
+      .then(response => response['content']);
+  }
+
+  excluir(codigo: number): Promise<void> {
+    const headers = new HttpHeaders()
+      .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
+
+    return this.http.delete(`${this.pessoasUrl}/${codigo}`, { headers })
+      .toPromise()
+      .then(() => null);
+  }
+
 }

@@ -1,6 +1,8 @@
+import { ToastyService } from 'ng2-toasty';
+import { ErrorHandlerService } from './../../core/error-handler.service';
 import { PessoaService, PessoaFiltro } from './../pessoa.service';
-import { Component, OnInit } from '@angular/core';
-import { LazyLoadEvent } from 'primeng/api';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { LazyLoadEvent, ConfirmationService } from 'primeng/api';
 
 @Component({
   selector: 'app-pessoas-pesquisa',
@@ -12,45 +14,66 @@ export class PessoasPesquisaComponent implements OnInit {
   totalRegistros = 0;
   filtro = new PessoaFiltro();
   pessoas = [];
+  @ViewChild('tabela') grid;
 
-  constructor(private pessoaService: PessoaService) { }
+
+  constructor(
+    private pessoaService: PessoaService,
+    private errorHandler: ErrorHandlerService,
+    private confirmation: ConfirmationService,
+    private toasty: ToastyService
+  ) { }
 
   ngOnInit() {
-    //this.listar();
-  }
-
-  ngAfter() {
-    this.pesquisar();
   }
 
   pesquisar(pagina = 0) {
 
     this.filtro.pagina = pagina;
+    if (this.filtro.pagina === 0) {
+      this.listar();
+    }
 
     this.pessoaService.pesquisar(this.filtro)
       .then(resultado => {
         this.totalRegistros = resultado.total;
         this.pessoas = resultado.pessoas;
-      });
+      })
+      .catch(erro => this.errorHandler.handle(erro));
   }
 
   listar(pagina = 0) {
 
     this.filtro.pagina = pagina;
-    console.log(this.filtro.pagina);
-    console.log(this.filtro.itensPorPagina);
 
     this.pessoaService.listar(this.filtro)
     .then(resultado => {
       this.totalRegistros = resultado.total;
       this.pessoas = resultado.pessoas;
-      //console.log(this.totalRegistros);
     });
   }
 
   aoMudarPagina(event: LazyLoadEvent) {
     const pagina = event.first / event.rows;
     this.listar(pagina);
+  }
+
+  confirmarExclusao(pessoa: any) {
+    this.confirmation.confirm({
+      message: 'Tem certeza que deseja excluir?',
+      accept: () => {
+        this.excluir(pessoa);
+      }
+    });
+  }
+
+  excluir(pessoa: any) {
+    this.pessoaService.excluir(pessoa.codigo)
+      .then(() => {
+        this.grid.reset(); // ~> Depois de excluir volta a paginacao no inicio.
+        this.toasty.success('Pessoa excluída com sucesso!');
+      })
+      .catch(erro => this.errorHandler.handle(erro));
   }
 
 }

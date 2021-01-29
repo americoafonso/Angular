@@ -23,7 +23,7 @@ export class LancamentosPesquisaComponent implements OnInit {
     private lancamentoService: LancamentoService,
     private toastyService: ToastyService,
     private confirmationService: ConfirmationService,
-    private errorHandlerService: ErrorHandlerService
+    private errorHandler: ErrorHandlerService
   ) { }
 
   ngOnInit() {
@@ -71,7 +71,7 @@ export class LancamentosPesquisaComponent implements OnInit {
         this.totalRegistros = resultado.total;
         this.lancamentos = resultado.lancamentos;
       })
-      .catch(erro => this.errorHandlerService.handle(erro));
+      .catch(erro => this.errorHandler.handle(erro));
   }
 
   aoMudarPagina(event: LazyLoadEvent) {
@@ -89,12 +89,11 @@ export class LancamentosPesquisaComponent implements OnInit {
   }
 
   excluir(lancamento: any) {
-
     this.lancamentoService.excluir(lancamento.codigo)
     .then(() => {
       this.pesquisar();
       this.toastyService.success('Lançamento excluído com sucesso!');
-    }).catch(erro => this.errorHandlerService.handle(erro));
+    }).catch(erro => this.errorHandler.handle(erro));
 
   }
 
