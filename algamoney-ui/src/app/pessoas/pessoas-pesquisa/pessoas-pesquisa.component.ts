@@ -30,8 +30,9 @@ export class PessoasPesquisaComponent implements OnInit {
   pesquisar(pagina = 0) {
 
     this.filtro.pagina = pagina;
+
     if (this.filtro.pagina === 0) {
-      this.listar();
+      this.grid.first = 0;
     }
 
     this.pessoaService.pesquisar(this.filtro)
@@ -74,6 +75,19 @@ export class PessoasPesquisaComponent implements OnInit {
         this.toasty.success('Pessoa excluída com sucesso!');
       })
       .catch(erro => this.errorHandler.handle(erro));
+  }
+
+  alterarStatus(pessoa: any) {
+    const novoStatus = !pessoa.ativo;
+
+    console.log(novoStatus);
+
+    this.pessoaService.mudarStatus(pessoa.codigo, novoStatus).then(() => {
+      const acao = novoStatus ? 'ativada' : 'desativada';
+
+      pessoa.ativo = novoStatus;
+      this.toasty.success(`Pessoa ${acao} com sucesso!`);
+    }).catch(erro => this.errorHandler.handle(erro));
   }
 
 }
