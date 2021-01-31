@@ -1,3 +1,5 @@
+import { ErrorHandlerService } from './../../core/error-handler.service';
+import { CategoriaService } from './../../categorias/categoria.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -14,10 +16,7 @@ export class LancamentoCadastroComponent implements OnInit {
     {label: 'Despesa', value: 'DESPESA'},
   ];
 
-  categorias = [
-    {label: 'Alimentação', value: '1'},
-    {label: 'Transporte', value: '2'},
-  ];
+  categorias = [];
 
   pessoas = [
     {label: 'Americo Afonso', value: '1'},
@@ -25,9 +24,13 @@ export class LancamentoCadastroComponent implements OnInit {
     {label: 'Delzer Afonso', value: '3'},
   ];
 
-  constructor() { }
+  constructor(
+    private categoriaService: CategoriaService,
+    private errorHandler: ErrorHandlerService
+    ) { }
 
   ngOnInit() {
+
     this.pt = {
       firstDayOfWeek: 0,
       dayNames:
@@ -55,6 +58,26 @@ export class LancamentoCadastroComponent implements OnInit {
       dateFormat: 'dd/mm/yy',
       weekHeader: 'Wk'
     };
+
+    this.carregarCategorias();
   }
+
+  // ~> Este metodo carregarCategorias faz a mesma coisa que o metodo comentado a baixo
+  carregarCategorias() {
+    this.categoriaService.listarTodas()
+    .then(categorias => {
+      this.categorias = categorias.map(c => {
+        return {label: c.nome, value: c.codigo};
+      });
+    }).catch(erro => this.errorHandler.handle(erro));
+  }
+
+  /* carregarCategorias() {
+    return this.categoriaService.listarTodas()
+      .then(categorias => {
+        this.categorias = categorias.map(c => ({ label: c.nome, value: c.codigo }));
+      })
+      .catch(erro => this.errorHandler.handle(erro));
+  } */
 
 }

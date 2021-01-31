@@ -51,7 +51,7 @@
             <td>{{pessoas.endereco.cidade}}</td>
             <td class="col-data-content">{{pessoas.endereco.estado}}</td>
             <td class="col-data-content">
-              <a href="javascript:;" [pTooltip]="pessoas.ativo ? 'Desativar' : 'Ativar'" tooltipPosition="top" (click)="alterarStatus(pessoas)">
+              <a href="javascript:;" [pTooltip]="pessoas.ativo ? 'Desativar' : 'Ativar'" tooltipPosition="right" (click)="alterarStatus(pessoas)">
                 {{pessoas.ativo ? 'Ativo' : 'Inativo'}}
               </a>
             </td>
