@@ -21,5 +21,4 @@ export class CategoriaService {
     .then(response => response);
   }
 
-
 }
