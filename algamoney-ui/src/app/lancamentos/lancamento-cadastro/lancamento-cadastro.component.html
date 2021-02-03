@@ -1,6 +1,6 @@
 <div class="container">
 
-  <form autocomplete="off">
+  <form #f="ngForm" autocomplete="off" (ngSubmit)="salvar(f)">
     <br>
     <br>
 
@@ -15,12 +15,14 @@
       <br>
 
       <div class="ui-g-12">
-        <p-selectButton [options]="tipos" #tipo></p-selectButton>
+        <p-selectButton name="tipo" [options]="tipos"
+          [(ngModel)]="lancamento.tipo"
+          #tipo></p-selectButton>
       </div>
 
       <div class="ui-g-6 ui-md-3 ui-fluid">
         <label>Vencimento</label>
-        <p-calendar dateFormat="dd/mm/yy" [showIcon]="true" [locale]="pt" name="vencimento" ngModel
+        <p-calendar dateFormat="dd/mm/yy" [showIcon]="true" [locale]="pt" name="vencimento" ngModel [(ngModel)]="lancamento.dataVencimento"
           #vencimento="ngModel" required placeholder="dd/mm/ano"></p-calendar>
 
         <app-message [control]="vencimento" error="required" text="Informe uma data de vencimento"></app-message>
@@ -28,12 +30,13 @@
 
       <div class="ui-g-6 ui-md-3 ui-fluid">
         <label>{{ tipo.value === 'RECEITA' ? 'Recebimento' : 'Pagamento' }}</label>
-        <p-calendar dateFormat="dd/mm/yy" [showIcon]="true" [locale]="pt" placeholder="dd/mm/ano"></p-calendar>
+        <p-calendar dateFormat="dd/mm/yy" [showIcon]="true" [locale]="pt" placeholder="dd/mm/ano" name="dataPagamento"
+         [(ngModel)]="lancamento.dataPagamento"></p-calendar>
       </div>
 
       <div class="ui-g-12 ui-md-9 ui-fluid">
         <label>Descrição</label>
-        <input pInputText type="text" name="descricao" ngModel #descricao="ngModel" required minlength="5"
+        <input pInputText type="text" name="descricao" ngModel [(ngModel)]="lancamento.descricao" #descricao="ngModel" required minlength="5"
           placeholder="Descrição para este Lançamento.">
 
         <app-message [control]="descricao" error="required" text="Informe uma descrição"></app-message>
@@ -47,13 +50,13 @@
       <div class="ui-g-12 ui-md-3 ui-fluid">
         <label>Valor</label>
         <input type="text" pInputText placeholder="0,00" currencyMask
-          [options]="{ prefix: '', thousands: '.', decimal: ',', allowNegative: false }" name="valor" ngModel
+          [options]="{ prefix: '', thousands: '.', decimal: ',', allowNegative: false }" name="valor" ngModel [(ngModel)]="lancamento.valor"
           #valor="ngModel" />
       </div>
 
       <div class="ui-g-12 ui-md-6 ui-fluid">
         <label>Categoria</label>
-        <p-dropdown [options]="categorias" placeholder="Selecione" name="categoria" ngModel #categoria="ngModel"
+        <p-dropdown [options]="categorias" placeholder="Selecione" name="categoria" ngModel [(ngModel)]="lancamento.categoria.codigo" #categoria="ngModel"
           required></p-dropdown>
 
         <app-message [control]="categoria" error="required" text="Informe uma das categorias"></app-message>
@@ -61,7 +64,7 @@
 
       <div class="ui-g-12 ui-md-6 ui-fluid">
         <label>Pessoa</label>
-        <p-dropdown [options]="pessoas" placeholder="Selecione" [filter]="true" name="pessoa" ngModel #pessoa="ngModel"
+        <p-dropdown [options]="pessoas" placeholder="Selecione" [filter]="true" name="pessoa" ngModel [(ngModel)]="lancamento.pessoa.codigo" #pessoa="ngModel"
           required></p-dropdown>
 
         <app-message [control]="pessoa" error="required" text="Informe uma das pessoas"></app-message>
@@ -69,11 +72,11 @@
 
       <div class="ui-g-12 ui-fluid">
         <label>Observação</label>
-        <textarea pInputTextarea row="3" placeholder="Observação para este Lançamento."></textarea>
+        <textarea pInputTextarea row="3" name="observacao" [(ngModel)]="lancamento.observacao" placeholder="Observação para este Lançamento."></textarea>
       </div>
 
       <div class="ui-g-12" id="">
-        <button pButton type="submit" label="Salvar" class="salvarButton" [disabled]="" icon="pi pi-save"></button>
+        <button pButton type="submit" label="Salvar" class="salvarButton" [disabled]="f.invalid" icon="pi pi-save"></button>
         <button pButton type="button" label="Novo" class="novoButton" icon="pi pi-plus"></button>
         <button pButton type="button" class="voltarButton" icon="pi pi-arrow-circle-left" pTooltip="Voltar para a pesquisa"></button>
       </div>
