@@ -1,6 +1,6 @@
 <div class="container">
 
-  <form autocomplete="off">
+  <form #f="ngForm" autocomplete="off" (ngSubmit)="salvar(f)">
     <br>
     <br>
 
@@ -16,7 +16,7 @@
 
       <div class="ui-g-12 ui-fluid">
         <label>Nome</label>
-        <input type="text" pInputText name="nome" ngModel #nome="ngModel" required minlength="5" placeholder="Jonathan Gonçalves"/>
+        <input type="text" pInputText name="nome" ngModel [(ngModel)]="pessoa.nome" #nome="ngModel" required minlength="5" placeholder="Jonathan Gonçalves"/>
 
         <app-message [control]="nome" error="required" text="Informe o nome"></app-message>
 
@@ -28,7 +28,7 @@
 
       <div class="ui-g-12 ui-md-9 ui-fluid">
         <label>Logradouro</label>
-        <input type="text" pInputText name="logradouro" ngModel #logradouro="ngModel" required placeholder="Rua Lidio Lunardi" />
+        <input type="text" pInputText name="logradouro" ngModel [(ngModel)]="pessoa.endereco.logradouro" #logradouro="ngModel" required placeholder="Rua Lidio Lunardi" />
 
         <app-message [control]="logradouro" error="required" text="Informe o Logradouro"></app-message>
 
@@ -36,7 +36,7 @@
 
       <div class="ui-g-12 ui-md-3 ui-fluid">
         <label>Número</label>
-        <input type="text" pInputText pKeyFilter="num" name="numero" ngModel #numero="ngModel" required placeholder="425" />
+        <input type="text" pInputText pKeyFilter="num" name="numero" ngModel [(ngModel)]="pessoa.endereco.numero" #numero="ngModel" required placeholder="425" />
 
         <app-message [control]="numero" error="required" text="Informe o número"></app-message>
 
@@ -44,41 +44,41 @@
 
       <div class="ui-g-12 ui-md-4 ui-fluid">
         <label>Complemento</label>
-        <input type="text" pInputText name="complemento" ngModel #complemento="ngModel" required placeholder="Av. Da Sinfonia"/>
+        <input type="text" pInputText name="complemento" ngModel [(ngModel)]="pessoa.endereco.complemento" #complemento="ngModel" required placeholder="Av. Da Sinfonia"/>
 
         <app-message [control]="complemento" error="required" text="Informe o Complemento"></app-message>
       </div>
 
       <div class="ui-g-12 ui-md-4 ui-fluid">
         <label>Bairro</label>
-        <input type="text" pInputText name="bairro" ngModel #bairro="ngModel" required placeholder="Palmares"/>
+        <input type="text" pInputText name="bairro" ngModel [(ngModel)]="pessoa.endereco.bairro" #bairro="ngModel" required placeholder="Palmares"/>
 
         <app-message [control]="bairro" error="required" text="Informe o Bairro"></app-message>
       </div>
 
       <div class="ui-g-12 ui-md-4 ui-fluid">
         <label>CEP</label>
-        <p-inputMask name="cep" ngModel #cep="ngModel" required mask="99.999-999" placeholder="31.155-540"></p-inputMask>
+        <p-inputMask name="cep" ngModel [(ngModel)]="pessoa.endereco.cep" #cep="ngModel" required mask="99.999-999" placeholder="31.155-540"></p-inputMask>
 
         <app-message [control]="cep" error="required" text="Informe o CEP"></app-message>
       </div>
 
       <div class="ui-g-6 ui-fluid">
         <label>Cidade</label>
-        <input type="text" pInputText name="cidade" ngModel #cidade="ngModel" required placeholder="Belo Horizonte"/>
+        <input type="text" pInputText name="cidade" ngModel [(ngModel)]="pessoa.endereco.cidade" #cidade="ngModel" required placeholder="Belo Horizonte"/>
 
         <app-message [control]="cidade" error="required" text="Informe a Cidade"></app-message>
       </div>
 
       <div class="ui-g-6 ui-fluid">
         <label>Estado</label>
-        <input type="text" pInputText name="estado" ngModel #estado="ngModel" required placeholder="Minas Gerais"/>
+        <input type="text" pInputText name="estado" ngModel [(ngModel)]="pessoa.endereco.estado" #estado="ngModel" required placeholder="Minas Gerais"/>
 
         <app-message [control]="estado" error="required" text="Informe o Estado"></app-message>
       </div>
 
       <div class="ui-g-12" id="">
-        <button pButton type="submit" label="Salvar" class="salvarButton" [disabled]="" icon="pi pi-save"></button>
+        <button pButton type="submit" label="Salvar" class="salvarButton" [disabled]="f.invalid" icon="pi pi-save"></button>
         <button pButton type="button" label="Novo" class="novoButton" icon="pi pi-plus"></button>
         <button pButton type="button" class="voltarButton" icon="pi pi-arrow-circle-left" pTooltip="Voltar para a pesquisa"></button>
       </div>

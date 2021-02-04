@@ -25,8 +25,6 @@ export class LancamentoCadastroComponent implements OnInit {
   pessoas = [];
   lancamento = new Lancamento();
 
-
-
   constructor(
     private categoriaService: CategoriaService,
     private pessoaService: PessoaService,
@@ -76,8 +74,7 @@ export class LancamentoCadastroComponent implements OnInit {
 
         form.reset();
         this.lancamento = new Lancamento();
-      })
-      .catch(erro => this.errorHandler.handle(erro));
+      }).catch(erro => this.errorHandler.handle(erro));
   }
 
   // ~> Este metodo carregarCategorias faz a mesma coisa que o metodo comentado a baixo

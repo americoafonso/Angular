@@ -63,7 +63,6 @@ export class LancamentoService {
     .append('Content-Type', 'application/json');
 
     return this.http.post<Lancamento>(this.lancamentosUrl, lancamento, { headers }).toPromise();
-
   }
 
 }
