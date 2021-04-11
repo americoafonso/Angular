@@ -135,7 +135,6 @@ export class LancamentoCadastroComponent implements OnInit {
   } */
 
   carregarPessoas() {
-    debugger
     this.pessoaService.listarTodas()
     .then(pessoas => {
       this.pessoas = pessoas.map(p => {

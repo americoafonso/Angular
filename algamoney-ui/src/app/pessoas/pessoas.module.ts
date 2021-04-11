@@ -33,9 +33,6 @@ import { PessoasGridComponent } from './pessoas-grid/pessoas-grid.component';
 
     SharedModule
   ],
-  exports: [
-    PessoasPesquisaComponent,
-    PessoaCadastroComponent,
-  ]
+  exports: []
 })
 export class PessoasModule { }

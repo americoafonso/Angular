@@ -12,7 +12,7 @@ import { ConfirmationService } from 'primeng/api';
 import { CurrencyMaskConfig, CURRENCY_MASK_CONFIG } from 'ng2-currency-mask/src/currency-mask.config';
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
-import { ToastModule } from 'primeng';
+import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada.component';
 
 
 registerLocaleData(localePt, 'pt');
@@ -30,7 +30,8 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
 
 @NgModule({
   declarations: [
-    NavbarComponent
+    NavbarComponent,
+    PaginaNaoEncontradaComponent
   ],
   imports: [
     CommonModule,
