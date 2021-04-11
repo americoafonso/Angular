@@ -13,6 +13,7 @@ import { CurrencyMaskConfig, CURRENCY_MASK_CONFIG } from 'ng2-currency-mask/src/
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
 import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada.component';
+import { Title } from '@angular/platform-browser';
 
 
 registerLocaleData(localePt, 'pt');
@@ -51,7 +52,8 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     PessoaService,
 
     ConfirmationService,
-    { provide: CURRENCY_MASK_CONFIG, useValue: CustomCurrencyMaskConfig }, { provide: LOCALE_ID, useValue: 'pt'}
+    Title,
+    { provide: CURRENCY_MASK_CONFIG, useValue: CustomCurrencyMaskConfig }, { provide: LOCALE_ID, useValue: 'pt-BR'}
   ]
 })
 export class CoreModule { }
