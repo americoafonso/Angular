@@ -7,7 +7,8 @@
     <div class="ui-g">
 
       <div class="ui-g-12">
-        <i class="pi pi-bookmark">Novo Lançamento</i>
+        <i class="pi pi-bookmark"> {{ editando ? 'Edição de' : 'Novo' }} Lançamento</i>
+        <!-- {{lancamento.codigo}} -->
       </div>
       <br>
       <br>
@@ -77,7 +78,7 @@
 
       <div class="ui-g-12" id="">
         <button pButton type="submit" label="Salvar" class="salvarButton" [disabled]="f.invalid" icon="pi pi-save"></button>
-        <button pButton type="button" label="Novo" class="novoButton" icon="pi pi-plus"></button>
+        <button pButton type="button" label="Novo" class="novoButton" icon="pi pi-plus" (click)="novo(f)"></button>
         <button pButton type="button" class="voltarButton" icon="pi pi-arrow-circle-left" pTooltip="Voltar para a pesquisa" routerLink="/lancamentos"></button>
       </div>
 
