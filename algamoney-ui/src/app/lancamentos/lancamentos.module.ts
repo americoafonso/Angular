@@ -1,4 +1,4 @@
-import { RouterModule } from '@angular/router';
+import { LancamentosRoutingModule } from './lancamentos-routing.module';
 import { SharedModule } from './../shared/shared.module';
 import { FormsModule } from '@angular/forms';
 import { KeyFilterModule } from 'primeng/keyfilter';
@@ -28,7 +28,6 @@ import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-ca
   imports: [
     CommonModule,
     FormsModule,
-    AppRoutingModule,
     InputTextModule,
     ButtonModule,
     TableModule,
@@ -40,9 +39,10 @@ import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-ca
     CurrencyMaskModule,
     InputMaskModule,
     KeyFilterModule,
-    RouterModule,
 
-    SharedModule
+    SharedModule,
+    LancamentosRoutingModule,
+    AppRoutingModule
   ],
   exports: []
 })
